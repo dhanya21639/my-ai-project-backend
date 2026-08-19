@@ -1,0 +1,31 @@
+server:
+  port: 8080
+
+spring:
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
+
+rag:
+  qdrant-url: http://localhost:6333
+  collection: pdf_chunks
+  top-k: 3
+  score-threshold: 0.30
+  chunk-size: 1200
+  chunk-overlap: 200
+
+gemini:
+  api-key: ${GEMINI_API_KEY:}
+  base-url: ${GEMINI_BASE_URL:https://generativelanguage.googleapis.com/v1beta}
+  embedding-model: ${GEMINI_EMBEDDING_MODEL:gemini-embedding-001}
+  chat-model: ${GEMINI_CHAT_MODEL:gemini-3.6-flash}
+  embedding-dimension: ${GEMINI_EMBEDDING_DIMENSION:3072}
+  timeout-seconds: ${GEMINI_TIMEOUT_SECONDS:90}
+
+chat:
+  no-document-message: "Please upload a PDF first. I can answer questions based on the uploaded document."
+  no-answer-message: "Sorry, I couldn't find an answer to that in the configured document."
+
+cors:
+  allowed-origin: http://localhost:5173
